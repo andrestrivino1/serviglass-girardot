@@ -1,0 +1,17 @@
+{
+  "name": "serviglass-tools",
+  "private": true,
+  "type": "module",
+  "description": "Herramientas de desarrollo del sitio Serviglass Girardot (no se publican con el sitio)",
+  "scripts": {
+    "images": "node optimize-images.mjs",
+    "contrast": "node contrast-check.mjs",
+    "validate": "html-validate ../index.html",
+    "verify": "node verify-site.mjs"
+  },
+  "devDependencies": {
+    "html-validate": "^11.16.0",
+    "puppeteer-core": "^24.0.0",
+    "sharp": "^0.35.0"
+  }
+}

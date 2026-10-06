@@ -1,0 +1,11 @@
+# Dependencias y salidas de las herramientas de desarrollo
+tools/node_modules/
+tools/shots/
+
+# Paquete de despliegue (se genera con tar/zip)
+dist/
+
+# Sistema y editores
+.DS_Store
+Thumbs.db
+*.log
