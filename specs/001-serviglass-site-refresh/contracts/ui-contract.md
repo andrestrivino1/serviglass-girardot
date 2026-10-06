@@ -103,10 +103,13 @@ No hay otras interacciones JavaScript (sin paralaje, ondas, formularios ni carru
 <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
 <link rel="icon" type="image/png" sizes="192x192" href="images/favicon-192.png">
 <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+<link rel="canonical" href="https://serviglassgirardot.com/">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://serviglassgirardot.com/">
 <meta property="og:title" content="Serviglass Girardot S.A.S. | Distribuidora de vidrios en Girardot">
 <meta property="og:description" content="…igual que description…">
-<meta property="og:image" content="images/og-image.jpg">
+<meta property="og:image" content="https://serviglassgirardot.com/images/og-image.jpg">
+<meta property="og:image:width" content="1200"> <meta property="og:image:height" content="630">
 <meta property="og:locale" content="es_CO">
 <link rel="preload" as="image" type="image/webp" href="images/planta/planta-04.webp">
 <link rel="stylesheet" href="styles.css">
@@ -119,7 +122,7 @@ La hoja de Google Fonts (solo "ATRIO") va al **final del `<body>`**, antes de `s
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@700&amp;text=ATRIO&amp;display=swap">
 ```
 
-`og:image` se declara relativa; si el sitio se publica en un dominio, convertir a URL absoluta.
+El dominio de publicación es `serviglassgirardot.com` (hosting cPanel de GoDaddy), por eso `canonical`, `og:url` y `og:image` son absolutas.
 
 ## 8. Imágenes
 
