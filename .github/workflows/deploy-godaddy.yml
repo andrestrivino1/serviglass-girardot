@@ -1,0 +1,63 @@
+# Despliegue automático del sitio en el hosting cPanel de GoDaddy por FTP.
+#
+# Secretos requeridos en GitHub → Settings → Secrets and variables → Actions:
+#   FTP_SERVER    host FTP del hosting (p. ej. ftp.serviglassgirardot.com o la IP del servidor)
+#   FTP_USERNAME  usuario de cPanel o de una cuenta FTP creada en cPanel → "Cuentas de FTP"
+#   FTP_PASSWORD  contraseña de ese usuario
+#
+# Si creas una cuenta FTP cuyo directorio raíz ya sea public_html, cambia `server-dir` a "./".
+# Si el servidor no acepta FTPS, cambia `protocol` a "ftp".
+# Solo se publican index.html, styles.css, scripts.js e images/. El resto del repositorio
+# (specs/, tools/, .specify/, .claude/) nunca se sube al hosting.
+# El primer despliegue no borra archivos ajenos que ya existan en public_html (por ejemplo
+# contacto.php o la carpeta images de la plantilla anterior): elimínalos una vez desde cPanel.
+
+name: Desplegar en GoDaddy
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "index.html"
+      - "styles.css"
+      - "scripts.js"
+      - "images/**"
+      - ".github/workflows/deploy-godaddy.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: despliegue-godaddy
+  cancel-in-progress: false
+
+jobs:
+  desplegar:
+    name: Validar y subir el sitio a public_html
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Descargar el repositorio
+        uses: actions/checkout@v4
+
+      - name: Validar el HTML
+        run: npx -y html-validate index.html
+
+      - name: Preparar los archivos publicables
+        run: |
+          mkdir -p dist/site
+          cp index.html styles.css scripts.js dist/site/
+          cp -r images dist/site/
+          echo "Archivos a publicar: $(find dist/site -type f | wc -l)"
+
+      - name: Subir por FTP (solo archivos nuevos o modificados)
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          port: 21
+          local-dir: dist/site/
+          server-dir: public_html/
+          state-name: .ftp-deploy-sync-state.json
+          log-level: standard
