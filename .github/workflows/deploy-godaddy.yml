@@ -21,6 +21,7 @@ on:
       - "index.html"
       - "styles.css"
       - "scripts.js"
+      - ".htaccess"
       - "images/**"
       - ".github/workflows/deploy-godaddy.yml"
   workflow_dispatch:
@@ -45,7 +46,7 @@ jobs:
       - name: Preparar los archivos publicables
         run: |
           mkdir -p dist/site
-          cp index.html styles.css scripts.js dist/site/
+          cp index.html styles.css scripts.js .htaccess dist/site/
           cp -r images dist/site/
           echo "Archivos a publicar: $(find dist/site -type f | wc -l)"
 

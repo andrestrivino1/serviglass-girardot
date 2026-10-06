@@ -24,9 +24,10 @@ async function ensure(dir) {
 }
 
 /** Genera <outBase>.jpg y <outBase>.webp con el mismo redimensionado. */
-async function jpgAndWebp(input, outBase, resize, { quality = 82, flatten = false } = {}) {
+async function jpgAndWebp(input, outBase, resize, { quality = 82, flatten = false, extract = null } = {}) {
   const pipeline = () => {
     let p = sharp(input).rotate();
+    if (extract) p = p.extract(extract);
     if (flatten) p = p.flatten({ background: '#ffffff' });
     return p.resize(resize);
   };
@@ -79,13 +80,22 @@ async function aliados() {
     'techos-y-aluminios': 'techos-y-aluminios.jpeg',
     'vg-ingenieria': 'ingenieria-construcciones-creaciones-vg.jpeg',
   };
+  // Recortes por aliado (fracción de la altura que se conserva desde arriba).
+  // fc-fabian-cano: el original trae una franja inferior con un número de WhatsApp que no debe publicarse.
+  const recortes = { 'fc-fabian-cano': 0.82 };
   const dims = {};
   for (const [slug, src] of Object.entries(mapa)) {
+    const input = path.join(ASSETS, 'aliados', src);
+    let extract = null;
+    if (recortes[slug]) {
+      const m = await sharp(input).metadata();
+      extract = { left: 0, top: 0, width: m.width, height: Math.round(m.height * recortes[slug]) };
+    }
     dims[slug] = await jpgAndWebp(
-      path.join(ASSETS, 'aliados', src),
+      input,
       path.join(dir, slug),
       { height: 160, withoutEnlargement: true },
-      { quality: 85, flatten: true },
+      { quality: 85, flatten: true, extract },
     );
   }
   return dims;

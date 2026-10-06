@@ -11,10 +11,10 @@ Este contrato fija los identificadores, comportamientos y enlaces que el marcado
 <header class="site-header">
   <a class="brand" href="#inicio"> <img logo> <span>Serviglass Girardot</span> </a>
   <nav aria-label="Principal">
-    <a href="#inicio" aria-current="page">Inicio</a>
-    <a href="#nosotros">Sobre nosotros</a>
-    <a href="#servicios">Servicios</a>
-    <a href="#contacto">Contacto</a>
+    <a href="/" aria-current="page">Inicio</a>
+    <a href="/nosotros">Sobre nosotros</a>
+    <a href="/servicios">Servicios</a>
+    <a href="/contacto">Contacto</a>
   </nav>
 </header>
 <main id="main">
@@ -32,14 +32,25 @@ Reglas:
 - El `<footer>` es único y está fuera de `<main>`; no se mueve con JavaScript.
 - El botón flotante es el último elemento del `<body>`.
 
-## 2. Navegación (`scripts.js`)
+## 2. Navegación por rutas limpias (`scripts.js` + `.htaccess`)
+
+| Ruta | Sección | Título de la pestaña |
+|------|---------|----------------------|
+| `/` (también `/inicio`) | `#inicio` | Serviglass Girardot S.A.S. \| Distribuidora de vidrios en Girardot |
+| `/nosotros` | `#nosotros` | Sobre nosotros \| Serviglass Girardot S.A.S. |
+| `/servicios` | `#servicios` | Servicios \| Serviglass Girardot S.A.S. |
+| `/contacto` | `#contacto` | Contacto \| Serviglass Girardot S.A.S. |
+
+Estas rutas son las que recibirá `routes/web.php` al migrar a Laravel (módulo `Site`).
 
 | Evento | Comportamiento |
 |--------|----------------|
-| Carga | Leer `location.hash`; si es uno de `#inicio`, `#nosotros`, `#servicios`, `#contacto`, activar esa sección; si no, `#inicio` sin modificar el hash. |
-| Clic en enlace interno (`a[href^="#"]` cuyo destino es una sección) | Prevenir el salto nativo, llamar `showSection(id)`, actualizar `location.hash` con `history.pushState` (o asignación directa), desplazar al inicio de la página. |
-| `hashchange` | Igual que carga (soporta botón atrás/adelante). |
-| `showSection(id)` | Quitar `is-active` de todas, ponerla en la sección destino; poner `aria-current="page"` solo en el enlace del menú correspondiente; mover el foco al encabezado de la sección (`tabindex="-1"`). |
+| Servidor | `.htaccess` entrega `index.html` para `/inicio`, `/nosotros`, `/servicios` y `/contacto` (solo si no existe un archivo o carpeta con ese nombre). En local, `npx serve -s` o `tools/verify-site.mjs` hacen lo mismo. |
+| Carga | Si la URL trae `#seccion` (enlace antiguo), se activa esa sección y la URL se corrige con `history.replaceState` a la ruta limpia; si no, se lee `location.pathname`; ruta desconocida → Inicio. |
+| Clic en enlace interno (`a[href]` del mismo origen cuya ruta o hash corresponde a una sección) | Prevenir la navegación, `history.pushState` a la ruta limpia, `showSection(id)`, desplazar al inicio. |
+| `popstate` / `hashchange` | Mostrar la sección que indique la URL (botones atrás/adelante). |
+| `showSection(id)` | Quitar `is-active` de todas, ponerla en la sección destino; `aria-current="page"` solo en el enlace del menú correspondiente; actualizar `document.title`; mover el foco al encabezado de la sección (`tabindex="-1"`). |
+| Sin servidor (`file://`) | No se pueden cambiar rutas: el script cae al modo `#seccion` automáticamente. |
 
 No hay otras interacciones JavaScript (sin paralaje, ondas, formularios ni carruseles).
 

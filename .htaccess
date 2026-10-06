@@ -1,0 +1,8 @@
+# Rutas limpias del sitio Serviglass Girardot (una sola página con secciones).
+# Las rutas /nosotros, /servicios y /contacto (y /inicio) entregan index.html; scripts.js muestra la sección.
+# Al migrar a Laravel, estas rutas pasan a routes/web.php y este archivo se reemplaza por el de Laravel.
+RewriteEngine On
+RewriteBase /
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(inicio|nosotros|servicios|contacto)/?$ index.html [L,QSA]

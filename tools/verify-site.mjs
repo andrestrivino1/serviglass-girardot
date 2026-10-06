@@ -31,9 +31,10 @@ function chromePath() {
   return found;
 }
 
+const RUTAS_LIMPIAS = ['/inicio', '/nosotros', '/servicios', '/contacto'];
 const server = http.createServer((req, res) => {
   let p = decodeURIComponent(req.url.split('?')[0].split('#')[0]);
-  if (p === '/') p = '/index.html';
+  if (p === '/' || RUTAS_LIMPIAS.includes(p.replace(/\/$/, ''))) p = '/index.html'; // mismo comportamiento que .htaccess
   const f = path.join(ROOT, p);
   if (!f.startsWith(ROOT) || !fs.existsSync(f) || fs.statSync(f).isDirectory()) { res.writeHead(404); res.end('not found'); return; }
   res.writeHead(200, { 'content-type': MIME[path.extname(f)] || 'application/octet-stream' });
@@ -60,7 +61,7 @@ for (const vp of viewports) {
   await page.setViewport({ width: vp.width, height: vp.height, deviceScaleFactor: vp.dsf });
   console.log(`\n[${vp.name} ${vp.width}px]`);
   for (const s of sections) {
-    await page.goto(`http://localhost:${PORT}/?v=${s}#${s}`, { waitUntil: 'networkidle2', timeout: 60000 });
+    await page.goto(`http://localhost:${PORT}${s === 'inicio' ? '/' : '/' + s}?v=${s}`, { waitUntil: 'networkidle2', timeout: 60000 });
     await page.evaluate(async () => {
       const step = Math.max(300, window.innerHeight - 100);
       for (let y = 0; y < document.body.scrollHeight; y += step) { window.scrollTo(0, y); await new Promise((r) => setTimeout(r, 60)); }
@@ -70,6 +71,7 @@ for (const vp of viewports) {
     const info = await page.evaluate((sec) => {
       const active = [...document.querySelectorAll('.section.is-active')].map((e) => e.id);
       const current = document.querySelector('nav[aria-label="Principal"] a[aria-current="page"]')?.getAttribute('href') || null;
+      const rutaOk = location.pathname === (sec === 'inicio' ? '/' : '/' + sec) && !location.hash;
       const visible = [...document.querySelectorAll('img')].filter((i) => i.getClientRects().length > 0);
       const broken = visible.filter((i) => !i.complete || i.naturalWidth === 0).map((i) => i.getAttribute('src'));
       const fab = document.querySelector('.whatsapp-float');
@@ -81,28 +83,30 @@ for (const vp of viewports) {
       const fabFinal = enViewport(fr);
       const overlaps = fr ? [...document.querySelectorAll('footer a, footer p, footer strong, .contacto a')].filter((a) => { const r = a.getBoundingClientRect(); return r.width > 0 && !(r.right < fr.left || r.left > fr.right || r.bottom < fr.top || r.top > fr.bottom); }).map((a) => a.textContent.trim().slice(0, 30) || a.getAttribute('aria-label')) : [];
       window.scrollTo(0, 0);
-      return { active, current, broken, overlaps, hScroll: document.documentElement.scrollWidth > window.innerWidth, sw: document.documentElement.scrollWidth, iw: window.innerWidth, bg: getComputedStyle(document.body).backgroundColor, fab: fabMedio && fabFinal };
+      return { active, current, rutaOk, titulo: document.title, broken, overlaps, hScroll: document.documentElement.scrollWidth > window.innerWidth, sw: document.documentElement.scrollWidth, iw: window.innerWidth, bg: getComputedStyle(document.body).backgroundColor, fab: fabMedio && fabFinal };
     }, s);
     await page.screenshot({ path: path.join(OUT, `${s}-${vp.name}.png`), fullPage: true });
-    const ok = info.active.length === 1 && info.active[0] === s && info.current === '#' + s && !info.broken.length && !info.hScroll && !info.overlaps.length && info.fab && info.bg === 'rgb(255, 255, 255)';
-    console.log(`  ${ok ? 'OK   ' : 'ERROR'} #${s}: activa=${info.active} menú=${info.current} rotas=${info.broken.length} desborde=${info.hScroll ? info.sw + '/' + info.iw : 'no'} flotante-visible(medio+final)=${info.fab} solapa=${info.overlaps.length}`);
+    const hrefEsperado = s === 'inicio' ? '/' : '/' + s;
+    const ok = info.active.length === 1 && info.active[0] === s && info.current === hrefEsperado && info.rutaOk && !info.broken.length && !info.hScroll && !info.overlaps.length && info.fab && info.bg === 'rgb(255, 255, 255)';
+    console.log(`  ${ok ? 'OK   ' : 'ERROR'} ${hrefEsperado}: activa=${info.active} menú=${info.current} ruta=${info.rutaOk} título="${info.titulo.slice(0, 28)}" rotas=${info.broken.length} desborde=${info.hScroll ? info.sw + '/' + info.iw : 'no'} flotante-visible(medio+final)=${info.fab} solapa=${info.overlaps.length}`);
     if (!ok) fail(`${vp.name} #${s} ${JSON.stringify(info)}`);
   }
   if (errors.length) fail(`${vp.name} errores de consola: ${errors.join(' | ')}`);
   await page.close();
 }
 
-// Navegación por hash y enlace de salto
+// Navegación por rutas, compatibilidad con #seccion y enlace de salto
 const page = await browser.newPage();
 await page.setViewport({ width: 1440, height: 900 });
-await page.goto(`http://localhost:${PORT}/#servicios`, { waitUntil: 'networkidle2' });
-const initial = await page.evaluate(() => document.querySelector('.section.is-active').id);
-await page.click('nav[aria-label="Principal"] a[href="#contacto"]');
+await page.goto(`http://localhost:${PORT}/#servicios`, { waitUntil: 'networkidle2' }); // enlace antiguo
 await new Promise((r) => setTimeout(r, 200));
-const afterClick = await page.evaluate(() => [document.querySelector('.section.is-active').id, location.hash, document.activeElement.id]);
+const initial = await page.evaluate(() => document.querySelector('.section.is-active').id + ' ' + location.pathname + location.hash);
+await page.click('nav[aria-label="Principal"] a[href="/contacto"]');
+await new Promise((r) => setTimeout(r, 200));
+const afterClick = await page.evaluate(() => [document.querySelector('.section.is-active').id, location.pathname, document.activeElement.id]);
 await page.goBack();
 await new Promise((r) => setTimeout(r, 300));
-const afterBack = await page.evaluate(() => [document.querySelector('.section.is-active').id, location.hash]);
+const afterBack = await page.evaluate(() => [document.querySelector('.section.is-active').id, location.pathname]);
 await page.close();
 const fresh = await browser.newPage();
 await fresh.goto(`http://localhost:${PORT}/`, { waitUntil: 'networkidle2' });
@@ -110,8 +114,8 @@ await fresh.keyboard.press('Tab');
 const skip = await fresh.evaluate(() => document.activeElement.textContent.trim());
 await fresh.close();
 console.log('\n[navegación]');
-console.log(`  inicio con #servicios → ${initial}; clic Contacto → ${afterClick.join(' ')}; atrás → ${afterBack.join(' ')}; primer Tab → "${skip}"`);
-if (initial !== 'servicios' || afterClick[0] !== 'contacto' || afterClick[2] !== 'contacto-titulo' || afterBack[0] !== 'servicios' || skip !== 'Saltar al contenido') fail('navegación por hash o enlace de salto');
+console.log(`  enlace antiguo /#servicios → ${initial}; clic Contacto → ${afterClick.join(' ')}; atrás → ${afterBack.join(' ')}; primer Tab → "${skip}"`);
+if (initial !== 'servicios /servicios' || afterClick[0] !== 'contacto' || afterClick[1] !== '/contacto' || afterClick[2] !== 'contacto-titulo' || afterBack[0] !== 'servicios' || afterBack[1] !== '/servicios' || skip !== 'Saltar al contenido') fail('navegación por rutas o enlace de salto');
 
 await browser.close();
 server.close();

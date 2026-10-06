@@ -26,6 +26,11 @@ El sitio actual es una plantilla genérica ("Glossy Touch" de TemplateMo) con fo
 - Q: ¿Cuál es el horario de atención? → A: Lunes a viernes de 8:00 a. m. a 12:00 p. m. y de 2:00 p. m. a 5:30 p. m.; sábados de 8:15 a. m. a 2:00 p. m.; domingos y festivos no hay servicio.
 - Q: ¿Qué cifra lleva el indicador "Toneladas / Metros Distribuidos al Año"? → A: Ninguna. "Toneladas / Metros Distribuidos al Año" y "Milímetros de Espesor en Inventario" son títulos destacados, no mediciones; se muestran sin cifra.
 
+### Session 2026-10-06 (tras la publicación)
+
+- Q: ¿Las secciones deben verse como `#inicio`, `#contacto` en la URL? → A: No. Se usan rutas limpias `/`, `/nosotros`, `/servicios`, `/contacto` (las mismas que tendrá la futura aplicación Laravel); los enlaces antiguos con `#seccion` se corrigen a la ruta limpia.
+- Q: ¿El logo de "Vidrios y Aluminios FC (Fabián Cano)" se publica completo? → A: No. Se recorta la franja inferior con el número de WhatsApp del aliado; el original queda intacto en `assets/aliados/`.
+
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 - Identidad visual limpia y corporativa (Priority: P1)

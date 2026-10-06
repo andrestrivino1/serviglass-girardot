@@ -8,7 +8,7 @@ deployment:
   tasks:
     - export DEPLOYPATH=/home/fzog4vj9ig88/public_html
     - /bin/mkdir -p $DEPLOYPATH
-    - /bin/cp -f index.html styles.css scripts.js $DEPLOYPATH/
+    - /bin/cp -f index.html styles.css scripts.js .htaccess $DEPLOYPATH/
     # Se reemplaza la carpeta de imágenes completa para que no queden fotos de la plantilla anterior.
     - /bin/rm -rf $DEPLOYPATH/images
     - /bin/cp -R images $DEPLOYPATH/images

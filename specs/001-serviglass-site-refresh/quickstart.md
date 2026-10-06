@@ -24,10 +24,10 @@ Resultado esperado: `images/` contiene `logo-serviglass.jpg`, `favicon-32.png`, 
 ## 2. Servir el sitio localmente
 
 ```powershell
-npx -y serve -l 8080 .
+npx -y serve -s -l 8080 .
 ```
 
-Abrir `http://localhost:8080/`. Alternativa sin servidor: abrir `index.html` directamente (el mapa y la fuente de ATRIO cargan igual; solo cambian las rutas absolutas de `og:image`).
+Abrir `http://localhost:8080/`. La opción `-s` hace que `/nosotros`, `/servicios` y `/contacto` devuelvan `index.html`, igual que el `.htaccess` en el hosting. Alternativa sin servidor: abrir `index.html` directamente; en ese caso la navegación usa `#seccion` porque el archivo no admite rutas.
 
 ## 3. Validaciones automáticas
 
@@ -123,11 +123,12 @@ Además: el mapa incrustado muestra Girardot; no existe formulario; el horario m
 3. Zoom 300 % sobre el símbolo: los calados del monograma son blancos (versión para fondo blanco) y hay espacio libre alrededor.
 4. Búsqueda del paso 3 (restos de plantilla) devuelve 0 resultados.
 
-## 5. Navegación por hash (contrato §2)
+## 5. Navegación por rutas (contrato §2)
 
-1. Abrir `http://localhost:8080/#servicios`: carga directamente en Servicios con "Servicios" resaltado en el menú.
-2. Clic en "Contacto" y luego botón atrás del navegador: vuelve a Servicios.
-3. Clic en "Conoce nuestros servicios" en el hero: va a Servicios y el foco queda en su título (visible con Tab).
+1. Abrir `http://localhost:8080/servicios`: carga directamente en Servicios con "Servicios" resaltado en el menú y el título de la pestaña "Servicios | Serviglass Girardot S.A.S.".
+2. Clic en "Contacto": la URL pasa a `/contacto` sin recargar; botón atrás del navegador: vuelve a `/servicios`.
+3. Clic en "Conoce nuestros servicios" en el hero: va a `/servicios` y el foco queda en su título (visible con Tab).
+4. Abrir `http://localhost:8080/#servicios` (enlace antiguo): muestra Servicios y la URL se corrige a `/servicios`.
 
 ## 6. Criterios de salida
 
