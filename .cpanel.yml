@@ -1,0 +1,16 @@
+---
+# Despliegue con "Git Version Control" de cPanel (GoDaddy).
+# cPanel clona el repositorio en /home/fzog4vj9ig88/serviglass-girardot y, al pulsar
+# "Deploy HEAD Commit" (o tras "Update from Remote"), ejecuta estas tareas desde esa carpeta.
+# Solo se publican index.html, styles.css, scripts.js e images/; el resto del repositorio
+# (specs/, tools/, .github/, .specify/, .claude/) no se copia a public_html.
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/fzog4vj9ig88/public_html
+    - /bin/mkdir -p $DEPLOYPATH
+    - /bin/cp -f index.html styles.css scripts.js $DEPLOYPATH/
+    # Se reemplaza la carpeta de imágenes completa para que no queden fotos de la plantilla anterior.
+    - /bin/rm -rf $DEPLOYPATH/images
+    - /bin/cp -R images $DEPLOYPATH/images
+    # Restos de la plantilla anterior que ya no forman parte del sitio.
+    - /bin/rm -f $DEPLOYPATH/contacto.php
