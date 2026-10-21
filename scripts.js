@@ -112,3 +112,94 @@
   }
   showSection(inicial, { focus: false });
 })();
+
+// Carruseles (hero de Inicio y galería de la planta).
+// Avance automático cada 5 s; se detiene al pasar el mouse, al enfocar un control, con el botón de pausa,
+// cuando la pestaña o la sección no están visibles y siempre que el usuario prefiera movimiento reducido.
+(function () {
+  'use strict';
+
+  var INTERVALO = 5000;
+  var reducir = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  Array.prototype.forEach.call(document.querySelectorAll('[data-carrusel]'), function (root) {
+    var slides = Array.prototype.slice.call(root.querySelectorAll('.carrusel__slide'));
+    var puntos = Array.prototype.slice.call(root.querySelectorAll('.carrusel__punto'));
+    var botonPausa = root.querySelector('[data-pausa]');
+    var actual = 0;
+    var timer = null;
+    var pausadoPorUsuario = reducir;
+    var pausadoTemporal = false;
+
+    function mostrar(i) {
+      actual = (i + slides.length) % slides.length;
+      slides.forEach(function (s, k) {
+        var activa = k === actual;
+        s.classList.toggle('is-active', activa);
+        if (activa) { s.removeAttribute('aria-hidden'); s.removeAttribute('inert'); }
+        else { s.setAttribute('aria-hidden', 'true'); s.setAttribute('inert', ''); }
+      });
+      puntos.forEach(function (p, k) {
+        if (k === actual) p.setAttribute('aria-current', 'true');
+        else p.removeAttribute('aria-current');
+      });
+    }
+
+    function visible() {
+      return !document.hidden && root.getClientRects().length > 0;
+    }
+
+    function detener() {
+      if (timer) { window.clearInterval(timer); timer = null; }
+    }
+
+    function iniciar() {
+      detener();
+      if (pausadoPorUsuario || pausadoTemporal) return;
+      timer = window.setInterval(function () {
+        if (visible()) mostrar(actual + 1);
+      }, INTERVALO);
+    }
+
+    function actualizarBotonPausa() {
+      root.classList.toggle('is-paused', pausadoPorUsuario);
+      if (botonPausa) {
+        botonPausa.setAttribute('aria-label', pausadoPorUsuario ? 'Reanudar el carrusel' : 'Pausar el carrusel');
+      }
+    }
+
+    root.querySelector('.carrusel__btn--prev').addEventListener('click', function () { mostrar(actual - 1); iniciar(); });
+    root.querySelector('.carrusel__btn--next').addEventListener('click', function () { mostrar(actual + 1); iniciar(); });
+    puntos.forEach(function (p, k) { p.addEventListener('click', function () { mostrar(k); iniciar(); }); });
+    if (botonPausa) {
+      botonPausa.addEventListener('click', function () {
+        pausadoPorUsuario = !pausadoPorUsuario;
+        actualizarBotonPausa();
+        iniciar();
+      });
+    }
+
+    root.addEventListener('mouseenter', function () { pausadoTemporal = true; detener(); });
+    root.addEventListener('mouseleave', function () { pausadoTemporal = false; iniciar(); });
+    root.addEventListener('focusin', function () { pausadoTemporal = true; detener(); });
+    root.addEventListener('focusout', function () { pausadoTemporal = false; iniciar(); });
+    root.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowLeft') { mostrar(actual - 1); iniciar(); }
+      else if (e.key === 'ArrowRight') { mostrar(actual + 1); iniciar(); }
+    });
+
+    // Deslizamiento táctil
+    var inicioX = null;
+    root.addEventListener('touchstart', function (e) { inicioX = e.touches[0].clientX; }, { passive: true });
+    root.addEventListener('touchend', function (e) {
+      if (inicioX === null) return;
+      var dx = e.changedTouches[0].clientX - inicioX;
+      inicioX = null;
+      if (Math.abs(dx) > 40) { mostrar(actual + (dx < 0 ? 1 : -1)); iniciar(); }
+    }, { passive: true });
+
+    mostrar(0);
+    actualizarBotonPausa();
+    iniciar();
+  });
+})();

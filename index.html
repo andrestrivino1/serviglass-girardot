@@ -18,7 +18,7 @@
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:locale" content="es_CO">
-  <link rel="preload" as="image" type="image/webp" href="images/planta/planta-04.webp">
+  <link rel="preload" as="image" type="image/webp" href="images/carrusel/inicio-01.webp">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -84,10 +84,45 @@
             </div>
           </div>
           <div class="hero__imagen">
-            <picture>
-              <source type="image/webp" srcset="images/planta/planta-04.webp">
-              <img src="images/planta/planta-04.jpg" alt="Operarios de Serviglass Girardot procesando vidrio en la máquina de pulido" width="782" height="440" fetchpriority="high">
-            </picture>
+            <div class="carrusel" data-carrusel role="group" aria-roledescription="carrusel" aria-label="Fotos de Serviglass Girardot">
+              <div class="carrusel__pista">
+              <figure class="carrusel__slide is-active" role="group" aria-roledescription="diapositiva" aria-label="1 de 4">
+                <picture>
+                  <source type="image/webp" srcset="images/carrusel/inicio-01.webp">
+                  <img src="images/carrusel/inicio-01.jpg" alt="Bodega de Serviglass Girardot con camión de reparto y láminas de vidrio de gran formato bajo el puente grúa" width="919" height="517" fetchpriority="high">
+                </picture>
+              </figure>
+              <figure class="carrusel__slide" role="group" aria-roledescription="diapositiva" aria-label="2 de 4">
+                <picture>
+                  <source type="image/webp" srcset="images/carrusel/inicio-02.webp">
+                  <img src="images/carrusel/inicio-02.jpg" alt="Camión cargado con láminas de vidrio templado listas para despacho dentro de la planta" width="1200" height="895" loading="lazy">
+                </picture>
+              </figure>
+              <figure class="carrusel__slide" role="group" aria-roledescription="diapositiva" aria-label="3 de 4">
+                <picture>
+                  <source type="image/webp" srcset="images/carrusel/inicio-03.webp">
+                  <img src="images/carrusel/inicio-03.jpg" alt="Interior de la bodega con láminas de vidrio de distintos tonos almacenadas en caballetes" width="1200" height="663" loading="lazy">
+                </picture>
+              </figure>
+              <figure class="carrusel__slide" role="group" aria-roledescription="diapositiva" aria-label="4 de 4">
+                <picture>
+                  <source type="image/webp" srcset="images/carrusel/inicio-04.webp">
+                  <img src="images/carrusel/inicio-04.jpg" alt="Zona de corte y almacenamiento de vidrio y espejos en la planta de Serviglass Girardot" width="1200" height="660" loading="lazy">
+                </picture>
+              </figure>
+              </div>
+              <button type="button" class="carrusel__btn carrusel__btn--prev" aria-label="Foto anterior"><svg class="icono" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></button>
+              <button type="button" class="carrusel__btn carrusel__btn--next" aria-label="Foto siguiente"><svg class="icono" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></button>
+              <div class="carrusel__barra">
+                <button type="button" class="carrusel__pausa" aria-label="Pausar el carrusel" data-pausa><svg class="icono icono--pausa" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg><svg class="icono icono--play" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button>
+                <div class="carrusel__puntos" role="group" aria-label="Elegir foto">
+                  <button type="button" class="carrusel__punto" aria-label="Ir a la foto 1"></button>
+                  <button type="button" class="carrusel__punto" aria-label="Ir a la foto 2"></button>
+                  <button type="button" class="carrusel__punto" aria-label="Ir a la foto 3"></button>
+                  <button type="button" class="carrusel__punto" aria-label="Ir a la foto 4"></button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -173,7 +208,7 @@
             </figure>
             <figure class="card testimonio">
               <blockquote>
-                <p>Excelente servicio, destacando la buena atención y asesoría durante todos los procesos. El trabajo realizado en el vidrio es de muy buena calidad, con acabados impecables y cuidado en los detalles, demostrando responsabilidad, compromiso y profesionalismo.</p>
+                <p>En Techos y Aluminio, valoramos enormemente nuestra alianza con su empresa. Su precisión en el corte de vidrio, la calidad de sus láminas y su excelente servicio al cliente hacen que cada proyecto conjunto sea un éxito rotundo; son el proveedor ideal de vidrio de alta calidad.</p>
               </blockquote>
               <figcaption><cite>Techos y Aluminios</cite></figcaption>
             </figure>
@@ -201,20 +236,20 @@
           </div>
           <ul class="indicadores" aria-label="Indicadores">
             <li class="indicador">
-              <span class="indicador__cifra">12 años</span>
+              <span class="indicador__cifra">+10</span>
               <span class="indicador__titulo">Años de Experiencia</span>
             </li>
-            <li class="indicador indicador--sin-cifra">
-              <span class="indicador__icono"><svg class="icono" aria-hidden="true" focusable="false"><use href="#i-weight"></use></svg></span>
-              <span class="indicador__titulo">Toneladas / Metros Distribuidos al Año</span>
+            <li class="indicador">
+              <span class="indicador__cifra">+700</span>
+              <span class="indicador__titulo">Toneladas Distribuidas al Año</span>
             </li>
             <li class="indicador">
               <span class="indicador__cifra">+100</span>
               <span class="indicador__titulo">Empresas y Constructores Activos</span>
             </li>
-            <li class="indicador indicador--sin-cifra">
-              <span class="indicador__icono"><svg class="icono" aria-hidden="true" focusable="false"><use href="#i-layers"></use></svg></span>
-              <span class="indicador__titulo">Milímetros de Espesor en Inventario</span>
+            <li class="indicador">
+              <span class="indicador__cifra">+350</span>
+              <span class="indicador__titulo">Inventario Promedio Anual en Cajas</span>
             </li>
           </ul>
         </div>
@@ -263,37 +298,51 @@
 
         <section class="galeria franja" aria-labelledby="galeria-titulo">
           <h2 id="galeria-titulo" class="seccion__titulo">Nuestra planta</h2>
-          <div class="grid grid--3">
-            <figure>
-              <picture>
-                <source type="image/webp" srcset="images/planta/planta-01.webp">
-                <img src="images/planta/planta-01.jpg" alt="Bodega de Serviglass Girardot con láminas de vidrio almacenadas en caballetes y puente grúa" width="407" height="723" loading="lazy">
-              </picture>
-            </figure>
-            <figure>
-              <picture>
-                <source type="image/webp" srcset="images/planta/planta-02.webp">
-                <img src="images/planta/planta-02.jpg" alt="Vista general de la planta con mesas de corte y láminas de vidrio" width="669" height="501" loading="lazy">
-              </picture>
-            </figure>
-            <figure>
-              <picture>
-                <source type="image/webp" srcset="images/planta/planta-03.webp">
-                <img src="images/planta/planta-03.jpg" alt="Láminas de vidrio de distintos tonos almacenadas en caballetes" width="689" height="388" loading="lazy">
-              </picture>
-            </figure>
-            <figure>
-              <picture>
-                <source type="image/webp" srcset="images/planta/planta-04.webp">
-                <img src="images/planta/planta-04.jpg" alt="Operarios procesando vidrio en la máquina de pulido" width="782" height="440" loading="lazy">
-              </picture>
-            </figure>
-            <figure>
-              <picture>
-                <source type="image/webp" srcset="images/planta/planta-05.webp">
-                <img src="images/planta/planta-05.jpg" alt="Cajas de vidrio embaladas sobre camión para despacho" width="782" height="587" loading="lazy">
-              </picture>
-            </figure>
+          <div class="carrusel carrusel--galeria" data-carrusel role="group" aria-roledescription="carrusel" aria-label="Fotos de la planta de Serviglass Girardot">
+            <div class="carrusel__pista">
+              <figure class="carrusel__slide is-active" role="group" aria-roledescription="diapositiva" aria-label="1 de 5">
+                <picture>
+                  <source type="image/webp" srcset="images/galeria/galeria-01.webp">
+                  <img src="images/galeria/galeria-01.jpg" alt="Probadores con espejos de vidrio instalados e iluminación perimetral" width="1290" height="717">
+                </picture>
+              </figure>
+              <figure class="carrusel__slide" role="group" aria-roledescription="diapositiva" aria-label="2 de 5">
+                <picture>
+                  <source type="image/webp" srcset="images/galeria/galeria-02.webp">
+                  <img src="images/galeria/galeria-02.jpg" alt="Camión de plataforma transportando láminas de vidrio templado cubiertas con lona dentro de la planta" width="1290" height="962" loading="lazy">
+                </picture>
+              </figure>
+              <figure class="carrusel__slide carrusel__slide--contain" role="group" aria-roledescription="diapositiva" aria-label="3 de 5">
+                <picture>
+                  <source type="image/webp" srcset="images/galeria/galeria-03.webp">
+                  <img src="images/galeria/galeria-03.jpg" alt="Espejos cortados con formas orgánicas sobre la mesa de corte, frente a las láminas almacenadas" width="628" height="844" loading="lazy">
+                </picture>
+              </figure>
+              <figure class="carrusel__slide" role="group" aria-roledescription="diapositiva" aria-label="4 de 5">
+                <picture>
+                  <source type="image/webp" srcset="images/galeria/galeria-04.webp">
+                  <img src="images/galeria/galeria-04.jpg" alt="Camión de reparto con vidrio embalado en estructura de madera listo para entrega" width="1290" height="722" loading="lazy">
+                </picture>
+              </figure>
+              <figure class="carrusel__slide" role="group" aria-roledescription="diapositiva" aria-label="5 de 5">
+                <picture>
+                  <source type="image/webp" srcset="images/galeria/galeria-05.webp">
+                  <img src="images/galeria/galeria-05.jpg" alt="Interior de la bodega con láminas de vidrio almacenadas, cabinas y puente grúa" width="1290" height="713" loading="lazy">
+                </picture>
+              </figure>
+            </div>
+              <button type="button" class="carrusel__btn carrusel__btn--prev" aria-label="Foto anterior"><svg class="icono" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></button>
+              <button type="button" class="carrusel__btn carrusel__btn--next" aria-label="Foto siguiente"><svg class="icono" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></button>
+              <div class="carrusel__barra">
+                <button type="button" class="carrusel__pausa" aria-label="Pausar el carrusel" data-pausa><svg class="icono icono--pausa" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg><svg class="icono icono--play" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button>
+                <div class="carrusel__puntos" role="group" aria-label="Elegir foto">
+                  <button type="button" class="carrusel__punto" aria-label="Ir a la foto 1"></button>
+                  <button type="button" class="carrusel__punto" aria-label="Ir a la foto 2"></button>
+                  <button type="button" class="carrusel__punto" aria-label="Ir a la foto 3"></button>
+                  <button type="button" class="carrusel__punto" aria-label="Ir a la foto 4"></button>
+                  <button type="button" class="carrusel__punto" aria-label="Ir a la foto 5"></button>
+                </div>
+              </div>
           </div>
         </section>
       </div>
@@ -327,7 +376,7 @@
             <ul class="lista-check servicio__lista">
               <li>Vidrio Templado de alta resistencia</li>
               <li>Vidrio Laminado de seguridad</li>
-              <li>Vidrios Reflectivos y de control solar</li>
+              <li>Vidrios Reflectivos de control solar</li>
               <li>Cumplimiento de normas y estándares de calidad</li>
             </ul>
           </article>
@@ -420,7 +469,7 @@
                     <dt>Gerencia</dt>
                     <dd><a href="mailto:gerencia@serviglassgirardot.com">gerencia@serviglassgirardot.com</a></dd>
                     <dt>Área Comercial</dt>
-                    <dd><a href="mailto:jefacomercial@serviglassgirardot.com">jefacomercial@serviglassgirardot.com</a></dd>
+                    <dd><a href="mailto:jefecomercial@serviglassgirardot.com">jefecomercial@serviglassgirardot.com</a></dd>
                     <dt>Subgerencia</dt>
                     <dd><a href="mailto:subgerencia@serviglassgirardot.com">subgerencia@serviglassgirardot.com</a></dd>
                     <dt>Administración y Contabilidad</dt>

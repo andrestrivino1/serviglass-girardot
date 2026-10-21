@@ -144,7 +144,7 @@ Orden: Distribución Mayorista e Importación Directa · Vidrios de Seguridad y 
 | WhatsApp | +57 320 381 6643 | `https://wa.me/573203816643?text=…` |
 | horario | Lunes a viernes: 8:00 a. m. a 12:00 p. m. y 2:00 p. m. a 5:30 p. m. · Sábados: 8:15 a. m. a 2:00 p. m. · Domingos y festivos: no hay servicio | lista de 3 líneas |
 | correo Gerencia | gerencia@serviglassgirardot.com | `mailto:` |
-| correo Área Comercial | jefacomercial@serviglassgirardot.com | `mailto:` |
+| correo Área Comercial | jefecomercial@serviglassgirardot.com | `mailto:` |
 | correo Subgerencia | subgerencia@serviglassgirardot.com | `mailto:` |
 | correo Administración y Contabilidad | asistenteadmonycont@serviglassgirardot.com | `mailto:` |
 | Instagram | @serviglassgirardotsas | `https://www.instagram.com/serviglassgirardotsas/` |

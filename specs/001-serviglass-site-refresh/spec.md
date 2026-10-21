@@ -29,6 +29,15 @@ El sitio actual es una plantilla genérica ("Glossy Touch" de TemplateMo) con fo
 ### Session 2026-10-06 (tras la publicación)
 
 - Q: ¿Las secciones deben verse como `#inicio`, `#contacto` en la URL? → A: No. Se usan rutas limpias `/`, `/nosotros`, `/servicios`, `/contacto` (las mismas que tendrá la futura aplicación Laravel); los enlaces antiguos con `#seccion` se corrigen a la ruta limpia.
+### Ajustes solicitados por el cliente (2026-10-21, documento "Cambio Pagina Web")
+
+- Hero de Inicio: carrusel automático de 4 fotos nuevas (pausa al pasar el mouse, botón de pausa, flechas y puntos; sin autoavance con movimiento reducido).
+- Aliados: Techos y Aluminios con testimonio nuevo (ya no duplicado); logo de Fabián Cano sin número.
+- Indicadores con cifra en los cuatro: +10 Años de Experiencia, +700 Toneladas Distribuidas al Año, +100 Empresas y Constructores Activos, +350 Inventario Promedio Anual en Cajas (reemplaza la decisión anterior de dos indicadores sin cifra).
+- Nuestra planta: carrusel con 5 fotos nuevas en lugar de la cuadrícula.
+- Servicios, tarjeta 2: "Vidrios Reflectivos de control solar".
+- Contacto: correo comercial corregido a jefecomercial@serviglassgirardot.com.
+
 - Q: ¿El logo de "Vidrios y Aluminios FC (Fabián Cano)" se publica completo? → A: No. Se recorta la franja inferior con el número de WhatsApp del aliado; el original queda intacto en `assets/aliados/`.
 
 ## User Scenarios & Testing *(mandatory)*
@@ -209,7 +218,7 @@ Un visitante que llega al final de cualquier sección ve, en lugar del crédito 
 
 **Contacto**
 
-- **FR-050**: La sección DEBE mostrar la dirección "Cra. 9 No. 14-30, Girardot – Cundinamarca", el teléfono "320 381 6643" (con enlace de llamada) y los cuatro correos con su etiqueta de área: Gerencia (gerencia@serviglassgirardot.com), Área Comercial (jefacomercial@serviglassgirardot.com), Subgerencia (subgerencia@serviglassgirardot.com) y Administración y Contabilidad (asistenteadmonycont@serviglassgirardot.com), cada uno con enlace de correo.
+- **FR-050**: La sección DEBE mostrar la dirección "Cra. 9 No. 14-30, Girardot – Cundinamarca", el teléfono "320 381 6643" (con enlace de llamada) y los cuatro correos con su etiqueta de área: Gerencia (gerencia@serviglassgirardot.com), Área Comercial (jefecomercial@serviglassgirardot.com), Subgerencia (subgerencia@serviglassgirardot.com) y Administración y Contabilidad (asistenteadmonycont@serviglassgirardot.com), cada uno con enlace de correo.
 - **FR-051**: La sección DEBE mostrar enlaces a Instagram (@serviglassgirardotsas), Facebook (Serviglass Girardot S.A.S.) y TikTok (@serviglass.girardot) con íconos reconocibles, que abren en pestaña nueva.
 - **FR-052**: El bloque "Encuéntranos" DEBE mostrar un mapa real centrado en la dirección de la sede, con un enlace para abrir la ubicación en la app de mapas del visitante; el marcador de posición actual DEBE eliminarse.
 - **FR-053**: El formulario de contacto de la plantilla y su página de envío DEBEN eliminarse; la sección Contacto NO DEBE ofrecer ningún formulario. Los canales de contacto del sitio son WhatsApp, teléfono, correos y redes sociales.

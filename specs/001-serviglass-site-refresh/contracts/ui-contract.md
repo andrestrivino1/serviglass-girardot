@@ -69,7 +69,7 @@ No hay otras interacciones JavaScript (sin paralaje, ondas, formularios ni carru
 |--------|-----|-----------|
 | WhatsApp (flotante, hero, contacto) | `https://wa.me/573203816643?text=Hola%20Serviglass%20Girardot%2C%20quiero%20informaci%C3%B3n%20sobre%20vidrios.` | `target="_blank" rel="noopener"` |
 | Teléfono | `tel:+573203816643` | — |
-| Correos | `mailto:gerencia@serviglassgirardot.com` · `mailto:jefacomercial@serviglassgirardot.com` · `mailto:subgerencia@serviglassgirardot.com` · `mailto:asistenteadmonycont@serviglassgirardot.com` | — |
+| Correos | `mailto:gerencia@serviglassgirardot.com` · `mailto:jefecomercial@serviglassgirardot.com` · `mailto:subgerencia@serviglassgirardot.com` · `mailto:asistenteadmonycont@serviglassgirardot.com` | — |
 | Instagram | `https://www.instagram.com/serviglassgirardotsas/` | `target="_blank" rel="noopener"` |
 | Facebook | `https://www.facebook.com/search/top?q=Serviglass%20Girardot%20S.A.S.` (provisional hasta recibir la URL de la página) | `target="_blank" rel="noopener"` |
 | TikTok | `https://www.tiktok.com/@serviglass.girardot` | `target="_blank" rel="noopener"` |

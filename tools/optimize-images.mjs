@@ -55,18 +55,23 @@ async function equipo() {
   return dims;
 }
 
-async function planta() {
-  const dir = path.join(OUT, 'planta');
-  await ensure(dir);
+async function carruseles() {
   const dims = {};
-  for (const n of [1, 2, 3, 4, 5]) {
-    const name = `planta-0${n}`;
-    dims[name] = await jpgAndWebp(
-      path.join(ASSETS, 'empresa', `${name}.jpeg`),
-      path.join(dir, name),
-      { width: 1200, withoutEnlargement: true },
-      { quality: 82 },
-    );
+  const grupos = [
+    { dir: 'carrusel', src: 'carrusel-inicio', prefix: 'inicio', n: 4, width: 1200 },
+    { dir: 'galeria', src: 'galeria-planta', prefix: 'galeria', n: 5, width: 1400 },
+  ];
+  for (const g of grupos) {
+    await ensure(path.join(OUT, g.dir));
+    for (let i = 1; i <= g.n; i++) {
+      const name = `${g.prefix}-0${i}`;
+      dims[`${g.dir}/${name}`] = await jpgAndWebp(
+        path.join(ASSETS, 'ajustes-2026-10', g.src, `${name}.jpeg`),
+        path.join(OUT, g.dir, name),
+        { width: g.width, withoutEnlargement: true },
+        { quality: 82 },
+      );
+    }
   }
   return dims;
 }
@@ -173,7 +178,7 @@ async function main() {
   await logoYFavicons();
   const dims = {
     equipo: await equipo(),
-    planta: await planta(),
+    carruseles: await carruseles(),
     aliados: await aliados(),
   };
 
