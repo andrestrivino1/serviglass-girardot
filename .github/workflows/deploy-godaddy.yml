@@ -5,7 +5,7 @@
 #   FTP_USERNAME  usuario de cPanel o de una cuenta FTP creada en cPanel → "Cuentas de FTP"
 #   FTP_PASSWORD  contraseña de ese usuario
 #
-# Si creas una cuenta FTP cuyo directorio raíz ya sea public_html, cambia `server-dir` a "./".
+# La cuenta FTP de despliegue (deploy@serviglassgirardot.com) tiene como raíz public_html, por eso server-dir es "./".
 # Si el servidor no acepta FTPS, cambia `protocol` a "ftp".
 # Solo se publican index.html, styles.css, scripts.js e images/. El resto del repositorio
 # (specs/, tools/, .specify/, .claude/) nunca se sube al hosting.
@@ -59,6 +59,6 @@ jobs:
           protocol: ftps
           port: 21
           local-dir: dist/site/
-          server-dir: public_html/
+          server-dir: ./
           state-name: .ftp-deploy-sync-state.json
           log-level: standard
