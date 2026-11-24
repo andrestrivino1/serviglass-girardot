@@ -6,3 +6,8 @@ RewriteBase /
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(inicio|nosotros|servicios|contacto)/?$ index.html [L,QSA]
+
+# El archivo de control del despliegue FTP no debe ser público.
+<Files ".ftp-deploy-sync-state.json">
+  Require all denied
+</Files>
