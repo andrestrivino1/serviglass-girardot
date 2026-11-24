@@ -104,7 +104,7 @@ Verificar los 10 enlaces (tabla en `ui-contract.md` §4):
 | 1 | Teléfono 320 381 6643 | abre marcador (móvil) / protocolo `tel:` |
 | 2 | Escríbenos por WhatsApp | chat con +57 320 381 6643 |
 | 3–6 | Gerencia, Área Comercial, Subgerencia, Administración y Contabilidad | cliente de correo con la dirección correcta |
-| 7 | Instagram | perfil @serviglassgirardotsas en pestaña nueva |
+| 7 | Instagram | perfil @serviglassgirardot en pestaña nueva |
 | 8 | Facebook | página/búsqueda "Serviglass Girardot S.A.S." en pestaña nueva |
 | 9 | TikTok | perfil @serviglass.girardot en pestaña nueva |
 | 10 | Abrir en Google Maps | mapa centrado en Cra. 9 No. 14-30, Girardot |

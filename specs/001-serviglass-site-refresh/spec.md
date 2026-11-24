@@ -123,7 +123,7 @@ Un visitante que prefiere llamar, escribir un correo, visitar la sede o seguir a
 
 1. **Given** la sección Contacto, **When** se carga, **Then** muestra la dirección "Cra. 9 No. 14-30, Girardot – Cundinamarca", el teléfono "320 381 6643" y los correos de Gerencia, Área Comercial, Subgerencia y Administración y Contabilidad con su etiqueta de área.
 2. **Given** el teléfono o un correo, **When** el visitante lo toca en un teléfono, **Then** se abre la app de llamadas o de correo con el dato ya cargado.
-3. **Given** los íconos de Instagram, Facebook y TikTok, **When** el visitante los toca, **Then** se abre el perfil correspondiente (@serviglassgirardotsas, Serviglass Girardot S.A.S., @serviglass.girardot) en una pestaña nueva.
+3. **Given** los íconos de Instagram, Facebook y TikTok, **When** el visitante los toca, **Then** se abre el perfil correspondiente (@serviglassgirardot, Serviglass Girardot S.A.S., @serviglass.girardot) en una pestaña nueva.
 4. **Given** el bloque "Encuéntranos", **When** se carga, **Then** muestra un mapa real centrado en la dirección de la sede (o un enlace para abrirla en la app de mapas) en lugar del marcador de posición actual.
 5. **Given** la sección Contacto, **When** se observa, **Then** no existe ningún formulario; los únicos canales ofrecidos son WhatsApp, teléfono, correos y redes sociales.
 6. **Given** la sección Contacto, **When** se carga, **Then** muestra el horario de atención: lunes a viernes de 8:00 a. m. a 12:00 p. m. y de 2:00 p. m. a 5:30 p. m., sábados de 8:15 a. m. a 2:00 p. m., y la nota "Domingos y festivos no hay servicio".
@@ -219,7 +219,7 @@ Un visitante que llega al final de cualquier sección ve, en lugar del crédito 
 **Contacto**
 
 - **FR-050**: La sección DEBE mostrar la dirección "Cra. 9 No. 14-30, Girardot – Cundinamarca", el teléfono "320 381 6643" (con enlace de llamada) y los cuatro correos con su etiqueta de área: Gerencia (gerencia@serviglassgirardot.com), Área Comercial (jefecomercial@serviglassgirardot.com), Subgerencia (subgerencia@serviglassgirardot.com) y Administración y Contabilidad (asistenteadmonycont@serviglassgirardot.com), cada uno con enlace de correo.
-- **FR-051**: La sección DEBE mostrar enlaces a Instagram (@serviglassgirardotsas), Facebook (Serviglass Girardot S.A.S.) y TikTok (@serviglass.girardot) con íconos reconocibles, que abren en pestaña nueva.
+- **FR-051**: La sección DEBE mostrar enlaces a Instagram (@serviglassgirardot), Facebook (Serviglass Girardot S.A.S.) y TikTok (@serviglass.girardot) con íconos reconocibles, que abren en pestaña nueva.
 - **FR-052**: El bloque "Encuéntranos" DEBE mostrar un mapa real centrado en la dirección de la sede, con un enlace para abrir la ubicación en la app de mapas del visitante; el marcador de posición actual DEBE eliminarse.
 - **FR-053**: El formulario de contacto de la plantilla y su página de envío DEBEN eliminarse; la sección Contacto NO DEBE ofrecer ningún formulario. Los canales de contacto del sitio son WhatsApp, teléfono, correos y redes sociales.
 - **FR-054**: La sección DEBE mostrar el horario de atención: lunes a viernes de 8:00 a. m. a 12:00 p. m. y de 2:00 p. m. a 5:30 p. m.; sábados de 8:15 a. m. a 2:00 p. m.; domingos y festivos no hay servicio.

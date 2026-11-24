@@ -147,7 +147,7 @@ Orden: Distribución Mayorista e Importación Directa · Vidrios de Seguridad y 
 | correo Área Comercial | jefecomercial@serviglassgirardot.com | `mailto:` |
 | correo Subgerencia | subgerencia@serviglassgirardot.com | `mailto:` |
 | correo Administración y Contabilidad | asistenteadmonycont@serviglassgirardot.com | `mailto:` |
-| Instagram | @serviglassgirardotsas | `https://www.instagram.com/serviglassgirardotsas/` |
+| Instagram | @serviglassgirardot | `https://www.instagram.com/serviglassgirardot` |
 | Facebook | Serviglass Girardot S.A.S. | `https://www.facebook.com/search/top?q=Serviglass%20Girardot%20S.A.S.` hasta recibir la URL de la página |
 | TikTok | @serviglass.girardot | `https://www.tiktok.com/@serviglass.girardot` |
 
